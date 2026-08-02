@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+backend/clarifai.db
+backend/test_clarifai.db
+backend/uploads/
+backend/test_uploads/
+backend/.env
+
+node_modules/
+frontend/dist/
+frontend/.env
+
+.DS_Store

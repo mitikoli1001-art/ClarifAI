@@ -1,0 +1,111 @@
+.rg-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--panel);
+  border: 1px solid var(--grid-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-panel);
+  padding: 28px 32px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.rg-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  flex: 1;
+}
+
+.rg-row {
+  display: flex;
+  gap: 6px;
+}
+
+.rg-cell {
+  background: var(--mist);
+  border: 1px solid var(--grid-line);
+  border-radius: 3px;
+  padding: 5px 10px;
+  min-width: 64px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rg-null {
+  color: var(--messy);
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* Messy side: jitter, duplicate flag, ragged alignment */
+.rg-grid--messy .rg-row:nth-child(1) { transform: rotate(-0.6deg); }
+.rg-grid--messy .rg-row:nth-child(2) { transform: rotate(0.8deg) translateX(4px); border-left: 2px solid var(--flag); }
+.rg-grid--messy .rg-row:nth-child(3) { transform: rotate(-0.4deg) translateX(6px); border-left: 2px solid var(--flag); opacity: 0.85; }
+.rg-grid--messy .rg-row:nth-child(4) { transform: rotate(0.5deg); }
+.rg-grid--messy .rg-row:nth-child(5) { transform: rotate(-0.3deg) translateX(2px); }
+.rg-grid--messy .rg-cell { color: var(--ink-soft); }
+
+/* Clean side: perfectly aligned, verified */
+.rg-grid--clean .rg-cell {
+  background: #ffffff;
+  border-color: var(--clarity);
+  color: var(--ink);
+}
+.rg-grid--clean .rg-row:first-child .rg-cell {
+  border-color: var(--clarity-bright);
+}
+
+.rg-scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--clarity-bright) 15%,
+    var(--clarity-bright) 85%,
+    transparent
+  );
+  box-shadow: 0 0 16px 2px rgba(47, 158, 130, 0.55);
+  animation: rg-sweep 5s ease-in-out infinite;
+}
+
+@keyframes rg-sweep {
+  0%, 8% { left: 8%; }
+  45%, 55% { left: 50%; }
+  92%, 100% { left: 92%; }
+}
+
+@media (max-width: 760px) {
+  .rg-wrap {
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px;
+  }
+  .rg-scan {
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--clarity-bright) 15%, var(--clarity-bright) 85%, transparent);
+    animation: rg-sweep-vert 5s ease-in-out infinite;
+  }
+  @keyframes rg-sweep-vert {
+    0%, 8% { top: 8%; }
+    45%, 55% { top: 50%; }
+    92%, 100% { top: 92%; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rg-scan { animation: none; left: 50%; }
+}

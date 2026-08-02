@@ -1,0 +1,101 @@
+/* ================= ClarifAI design tokens =================
+   Palette:
+     --ink        #10201C  primary text, deep green-black
+     --mist       #EAF0EC  page background, cool pale mist
+     --panel      #FFFFFF  card / surface
+     --clarity    #1F6F5C  primary accent (verified / clean state)
+     --clarity-br #2F9E82  brighter teal, hover/active
+     --flag       #E2A83D  amber, "before" / attention state
+     --messy      #B54B39  muted rust, "messy" / error state
+     --grid-line  #CBD5D0  neutral structural line color
+   Type:
+     Display -> 'Space Grotesk' (technical, grid-like character)
+     Body    -> 'IBM Plex Sans'
+     Mono    -> 'IBM Plex Mono' (data values, code, cell contents)
+   Signature: the "resolving grid" -- a spreadsheet grid that is jittered,
+   duplicated, and flagged on the left, and perfectly aligned on the right,
+   swept by a vertical scan line. This literally is what the product does.
+============================================================= */
+
+:root {
+  --ink: #10201c;
+  --ink-soft: #3d4f49;
+  --mist: #eaf0ec;
+  --panel: #ffffff;
+  --clarity: #1f6f5c;
+  --clarity-bright: #2f9e82;
+  --flag: #e2a83d;
+  --messy: #b54b39;
+  --grid-line: #cbd5d0;
+  --grid-line-strong: #a9b7b1;
+
+  --font-display: "Space Grotesk", "Helvetica Neue", sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  --radius: 6px;
+  --shadow-panel: 0 1px 2px rgba(16, 32, 28, 0.06), 0 8px 24px rgba(16, 32, 28, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--mist);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+
+code, .mono {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: var(--clarity);
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--clarity);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--clarity);
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
